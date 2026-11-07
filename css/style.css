@@ -1,7 +1,7 @@
 /* =====================================================================
-LUM COSTRUZIONI – Stili personalizzati
-Base: Bootstrap 5.3. Qui solo colori del brand e componenti custom.
-===================================================================== */
+   LUM COSTRUZIONI – Stili personalizzati
+   Base: Bootstrap 5.3. Qui solo colori del brand e componenti custom.
+   ===================================================================== */
 
 /* ---------- 1. Variabili (palette dal logo) ---------- */
 :root {
@@ -15,7 +15,7 @@ Base: Bootstrap 5.3. Qui solo colori del brand e componenti custom.
   --bg-soft: #f5f7f6;
   --radius: 1rem;
   --nav-h: 76px;
-  
+
   --bs-body-font-family: "Open Sans", system-ui, sans-serif;
   --bs-body-color: var(--text);
   --bs-link-color-rgb: 30, 123, 60;
@@ -126,11 +126,24 @@ h1, h2, h3, h4, h5 { color: var(--dark); font-weight: 700; }
   position: relative;
   min-height: 100vh;
   display: flex; align-items: center;
-  padding: calc(var(--nav-h) + 4rem) 0 5rem;
+  padding: calc(var(--nav-h) + 3rem) 0 4.5rem;
+  overflow: hidden;
   background:
-  linear-gradient(105deg, rgba(20, 24, 27, .93) 0%, rgba(20, 24, 27, .78) 50%, rgba(21, 90, 43, .55) 100%),
-  url("../img/progetto2-dopo.jpg") center / cover no-repeat;
+    radial-gradient(circle at 78% 45%, rgba(108, 191, 69, .22) 0%, rgba(108, 191, 69, 0) 45%),
+    linear-gradient(135deg, #14181b 0%, var(--dark) 55%, #123d22 100%);
 }
+/* Righe diagonali leggere che richiamano il disegno del logo */
+.hero::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(-45deg, rgba(255,255,255,.025) 0 2px, transparent 2px 28px);
+}
+.hero-logo {
+  width: 100%; max-width: 440px; height: auto;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, .45));
+}
+.hero-contacts { margin-top: 1.5rem; }
+.hero-contacts a { color: rgba(255, 255, 255, .85); text-decoration: none; }
+.hero-contacts a:hover { color: var(--brand-light); }
 .hero-title {
   color: #fff;
   font-size: clamp(2.3rem, 5.5vw, 4rem);
@@ -141,18 +154,12 @@ h1, h2, h3, h4, h5 { color: var(--dark); font-weight: 700; }
 .hero-points li { font-weight: 500; opacity: .95; }
 .hero-points i { color: var(--brand-light); margin-right: .4rem; }
 
-.hero-card {
-  background: #fff; border-radius: 1.25rem;
-  padding: 2.25rem; text-align: center;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, .35);
-  border-top: 6px solid var(--brand-light);
-}
 .hero-phone {
   display: inline-flex; align-items: center; gap: .6rem;
   font-family: "Montserrat", sans-serif; font-weight: 800;
-  font-size: 1.7rem; color: var(--brand); text-decoration: none;
+  font-size: 1.8rem; color: var(--brand-light) !important; text-decoration: none;
 }
-.hero-phone:hover { color: var(--brand-dark); }
+.hero-phone:hover { color: #fff !important; }
 
 /* ---------- 5. Punti di forza ---------- */
 .strengths { background: var(--brand); color: #fff; padding: 2.5rem 0; }
@@ -247,6 +254,7 @@ h1, h2, h3, h4, h5 { color: var(--dark); font-weight: 700; }
   user-select: none;
   touch-action: pan-y;   /* scroll verticale libero su mobile */
   background: #111;
+  cursor: ew-resize;
 }
 .ba-slider img {
   position: absolute; inset: 0;
@@ -255,43 +263,64 @@ h1, h2, h3, h4, h5 { color: var(--dark); font-weight: 700; }
 }
 /* L'immagine "Prima" viene tagliata a destra della posizione del cursore */
 .ba-before { clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
+/* Transizione morbida solo quando si usano i pulsanti (non durante il trascinamento) */
+.ba-slider.animate .ba-before { transition: clip-path .6s ease; }
+.ba-slider.animate .ba-handle { transition: left .6s ease; }
 
 /* Linea verticale + maniglia */
 .ba-handle {
   position: absolute; top: 0; bottom: 0; left: var(--pos);
-  width: 3px; background: #fff; transform: translateX(-50%);
+  width: 4px; background: #fff; transform: translateX(-50%);
   pointer-events: none;
   box-shadow: 0 0 12px rgba(0, 0, 0, .4);
 }
 .ba-handle i {
   position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%) rotate(90deg);
-  width: 46px; height: 46px; border-radius: 50%;
+  width: 54px; height: 54px; border-radius: 50%;
   display: grid; place-items: center;
-  background: var(--brand); color: #fff; font-size: 1.3rem;
+  background: var(--brand); color: #fff; font-size: 1.5rem;
   border: 3px solid #fff;
   box-shadow: 0 4px 14px rgba(0, 0, 0, .35);
 }
 
-/* L'input range invisibile copre tutta l'immagine: gestisce mouse, touch e tastiera */
+/* Input range nascosto alla vista: serve per la tastiera e gli screen reader.
+   Il trascinamento con mouse/dito è gestito in JS su tutta la foto. */
 .ba-range {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  margin: 0; opacity: 0; cursor: ew-resize;
-  -webkit-appearance: none; appearance: none;
+  position: absolute; width: 1px; height: 1px;
+  opacity: 0; pointer-events: none;
 }
 .ba-slider:has(.ba-range:focus-visible) .ba-handle i {
-  outline: 3px solid var(--brand-light); outline-offset: 2px;
+  outline: 3px solid var(--brand-light); outline-offset: 3px;
 }
 
 .ba-label {
   position: absolute; top: 1rem; z-index: 2;
   font-family: "Montserrat", sans-serif;
-  font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-  padding: .35rem .8rem; border-radius: .4rem;
+  font-size: .85rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+  padding: .45rem .95rem; border-radius: .4rem;
   pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .3);
+  transition: opacity .3s;
 }
-.ba-label-before { left: 1rem; background: rgba(28, 32, 35, .85); color: #fff; }
+/* Nasconde l'etichetta quando la sua foto non è visibile */
+.ba-slider.hide-before .ba-label-before,
+.ba-slider.hide-after .ba-label-after { opacity: 0; }
+.ba-label-before { left: 1rem; background: #fff; color: var(--dark); }
 .ba-label-after  { right: 1rem; background: var(--brand); color: #fff; }
+
+.ba-controls {
+  display: flex; gap: .5rem; padding: 1rem 1.75rem 0;
+}
+.ba-controls button {
+  flex: 1; border: 2px solid rgba(255, 255, 255, .18);
+  background: transparent; color: #fff;
+  font-family: "Montserrat", sans-serif; font-weight: 700; font-size: .9rem;
+  padding: .6rem .5rem; border-radius: .6rem;
+  transition: background .2s, border-color .2s;
+}
+.ba-controls button:hover { border-color: var(--brand-light); }
+.ba-controls button.active { background: var(--brand); border-color: var(--brand); }
 
 /* ---------- 9. Contatti ---------- */
 .contact-item {
@@ -338,6 +367,60 @@ h1, h2, h3, h4, h5 { color: var(--dark); font-weight: 700; }
 .footer-links a { color: rgba(255, 255, 255, .7); text-decoration: none; word-break: break-word; }
 .footer-links a:hover { color: var(--brand-light); }
 
+/* Riga legale del footer */
+.footer-bottom {
+  display: flex; flex-direction: column; align-items: center; gap: .75rem;
+  text-align: center; font-size: .875rem; color: rgba(255, 255, 255, .5);
+}
+@media (min-width: 768px) {
+  .footer-bottom { flex-direction: row; justify-content: space-between; text-align: left; }
+}
+.legal { display: flex; flex-direction: column; align-items: center; gap: .4rem; }
+.legal-links { display: flex; flex-wrap: wrap; justify-content: center; gap: .25rem 1.25rem; }
+.legal-links a { color: rgba(255, 255, 255, .6); text-decoration: none; transition: color .2s ease; }
+.legal-links a:hover, .legal-links a:focus-visible { color: var(--brand-light); text-decoration: underline; }
+@media (min-width: 768px) {
+  .legal { flex-direction: row; gap: 1.25rem; }
+  .legal-links a { position: relative; }
+  /* separatore "·" tra copyright e primo link */
+  .legal-links::before { content: "·"; color: rgba(255, 255, 255, .3); margin-right: -.5rem; }
+}
+
+/* Pagine legali (privacy-policy.html, cookie-policy.html) */
+.legal-page { padding: calc(var(--nav-h) + 3rem) 0 4rem; }
+.legal-page .container { max-width: 820px; }
+.legal-page h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); margin-bottom: .5rem; }
+.legal-page h2 { font-size: 1.25rem; margin: 2.25rem 0 .75rem; }
+.legal-page p, .legal-page li { line-height: 1.75; }
+.legal-page .updated { color: #7a8086; font-size: .9rem; }
+.legal-page table { font-size: .92rem; }
+.todo { background: #fff3cd; padding: 0 .3rem; border-radius: .25rem; }
+
+.footer-note { margin: 1rem 0 0; font-size: .75rem; color: rgba(255, 255, 255, .35); text-align: center; }
+@media (min-width: 768px) { .footer-note { text-align: left; } }
+
+/* Firma "Created by Noifla Digital Studio" */
+.credit-link {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-size: .8rem; letter-spacing: .01em;
+  color: #8a9096;                 /* grigio discreto */
+  text-decoration: none;
+  transition: color .2s ease;
+}
+.credit-link strong { font-weight: 600; }
+.credit-icon { flex-shrink: 0; display: block; }
+.credit-accent { stroke: currentColor; transition: stroke .2s ease; }
+.credit-accent-fill { fill: currentColor; transition: fill .2s ease; }
+
+/* Hover / focus: testo bianco, dettagli dell'icona nel verde del brand */
+.credit-link:hover,
+.credit-link:focus-visible { color: #fff; }
+.credit-link:hover .credit-accent,
+.credit-link:focus-visible .credit-accent { stroke: var(--brand-light); }
+.credit-link:hover .credit-accent-fill,
+.credit-link:focus-visible .credit-accent-fill { fill: var(--brand-light); }
+.credit-link:focus-visible { outline: 2px solid var(--brand-light); outline-offset: 4px; border-radius: .25rem; }
+
 /* ---------- 11. Pulsanti flottanti ---------- */
 .call-fab {
   position: fixed; right: 1.1rem; bottom: 1.1rem; z-index: 1030;
@@ -381,6 +464,8 @@ h1, h2, h3, h4, h5 { color: var(--dark); font-weight: 700; }
   .section { padding: 4.5rem 0; }
   .hero { min-height: auto; padding-top: calc(var(--nav-h) + 3rem); }
   .hero-lead { font-size: 1.05rem; }
+  .hero-logo { max-width: 240px; }
+  .ba-controls { padding: 1rem 1rem 0; }
   .hero .btn-lg { width: 100%; }
   .hero-points { gap: .75rem !important; flex-direction: column; }
   .about-badge { padding: .75rem 1rem; font-size: .85rem; }

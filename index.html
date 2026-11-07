@@ -455,13 +455,24 @@ FOOTER (con Partita IVA in chiaro)
             </div>
         </div>
         <hr>
-        <div class="d-flex flex-column flex-md-row justify-content-between gap-2 small text-white-50">
-            <span>© <span id="year"></span> Lum Costruzioni – P.IVA 02280920394</span>
-            <span>* Valore indicativo: il risparmio reale dipende dall'edificio e dall'intervento.</span>
-            <a href="#" onclick="document.getElementById('privacy-modal').style.display='flex'; return false;" class="text-gray-400 hover:text-white underline text-sm">
-                Privacy & Cookie Policy
-            </a>
-        </div>
+        <!-- Riga legale: copyright + P.IVA + link legali a sinistra, firma Noifla a destra (centrati su mobile) -->
+<div class="footer-bottom">
+  <div class="legal">
+    <span>© <span id="year"></span> Lum Costruzioni – P.IVA 02280920394</span>
+    <nav class="legal-links" aria-label="Informazioni legali">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="cookie-policy.html">Cookie Policy</a>
+    </nav>
+  </div>
+
+  <!-- Firma Noifla Digital Studio: sostituire href="#" con l'URL del portfolio -->
+  <a href="#" target="_blank" rel="noopener noreferrer" class="credit-link"
+     aria-label="Created by Noifla Digital Studio (si apre in una nuova scheda)">
+    <!-- ...icona SVG invariata... -->
+    <span>Created by <strong>Noifla Digital Studio</strong></span>
+  </a>
+</div>
+<p class="footer-note">* Valore indicativo: il risparmio reale dipende dall'edificio e dall'intervento.</p>
     </div>
 </footer>
 
