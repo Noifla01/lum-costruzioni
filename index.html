@@ -427,53 +427,74 @@
 FOOTER (con Partita IVA in chiaro)
 ================================================================ -->
 <footer class="footer">
-    <div class="container">
-        <div class="row g-4">
-            <div class="col-lg-5">
-                <a href="#home" class="d-inline-flex align-items-center gap-2 mb-3 text-decoration-none">
-                    <img src="img/logo.png" alt="" width="34" height="47">
-                    <span class="brand-text text-white">LUM <span>COSTRUZIONI</span></span>
-                </a>
-                <p class="text-white-50 mb-0">Lavori di termocappotto e intonaco. Rinnoviamo facciate ed edifici residenziali con cura e professionalità.</p>
-            </div>
-            <div class="col-6 col-lg-3">
-                <h5>Link rapidi</h5>
-                <ul class="list-unstyled footer-links">
-                    <li><a href="#chi-siamo">Chi Siamo</a></li>
-                    <li><a href="#servizi">Servizi</a></li>
-                    <li><a href="#lavori">Prima &amp; Dopo</a></li>
-                    <li><a href="#contatti">Contatti</a></li>
-                </ul>
-            </div>
-            <div class="col-6 col-lg-4">
-                <h5>Recapiti</h5>
-                <ul class="list-unstyled footer-links">
-                    <li><a href="tel:+393280868115"><i class="bi bi-telephone me-2"></i>328 086 8115</a></li>
-                    <li><a href="mailto:lumcostruzioni@gmail.com"><i class="bi bi-envelope me-2"></i>lumcostruzioni@gmail.com</a></li>
-                    <li class="text-white-50"><i class="bi bi-building me-2"></i>P.IVA 02280920394</li>
-                </ul>
-            </div>
-        </div>
-        <hr>
-        <!-- Riga legale: copyright + P.IVA + link legali a sinistra, firma Noifla a destra (centrati su mobile) -->
-<div class="footer-bottom">
-  <div class="legal">
-    <span>© <span id="year"></span> Lum Costruzioni – P.IVA 02280920394</span>
-    <nav class="legal-links" aria-label="Informazioni legali">
-      <a href="privacy-policy.html">Privacy Policy</a>
-      <a href="cookie-policy.html">Cookie Policy</a>
-    </nav>
-  </div>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <a href="#home" class="d-inline-flex align-items-center gap-2 mb-3 text-decoration-none">
+          <img src="img/logo.png" alt="" width="34" height="47">
+          <span class="brand-text text-white">LUM <span>COSTRUZIONI</span></span>
+        </a>
+        <p class="text-white-50 mb-0">Lavori di termocappotto e intonaco. Rinnoviamo facciate ed edifici residenziali con cura e professionalità.</p>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h5>Link rapidi</h5>
+        <ul class="list-unstyled footer-links">
+          <li><a href="#chi-siamo">Chi Siamo</a></li>
+          <li><a href="#servizi">Servizi</a></li>
+          <li><a href="#lavori">Prima &amp; Dopo</a></li>
+          <li><a href="#contatti">Contatti</a></li>
+        </ul>
+      </div>
+      <div class="col-12 col-lg-3 order-last order-lg-0">
+        <h5>Recapiti</h5>
+        <ul class="list-unstyled footer-links">
+          <li><a href="tel:+393280868115"><i class="bi bi-telephone me-2"></i>328 086 8115</a></li>
+          <li><a href="mailto:lumcostruzioni@gmail.com"><i class="bi bi-envelope me-2"></i>lumcostruzioni@gmail.com</a></li>
+          <li><a href="mailto:jusufjusufi@pec.buffetti.it"><i class="bi bi-envelope-check me-2"></i>PEC: jusufjusufi@pec.buffetti.it</a></li>
+        </ul>
+      </div>
 
-  <!-- Firma Noifla Digital Studio: sostituire href="#" con l'URL del portfolio -->
-  <a href="#" target="_blank" rel="noopener noreferrer" class="credit-link"
-     aria-label="Created by Noifla Digital Studio (si apre in una nuova scheda)">
-    <!-- ...icona SVG invariata... -->
-    <span>Created by <strong>Noifla Digital Studio</strong></span>
-  </a>
-</div>
-<p class="footer-note">* Valore indicativo: il risparmio reale dipende dall'edificio e dall'intervento.</p>
+      <!-- Dati aziendali (obbligatori per legge sul sito: ragione sociale, sede, P.IVA) -->
+      <div class="col-6 col-lg-3">
+        <h5>Dati aziendali</h5>
+        <address class="company-data mb-0">
+          <strong>LUM di Jusufi Jusuf</strong><br>
+          Via dei Bersaglieri 11<br>
+          48124 Ravenna (RA)<br>
+          P.IVA 02280920394<br>
+          VAT IT02280920394<br>
+          REA RA-187814
+        </address>
+      </div>
     </div>
+    <hr>
+    <!-- Riga legale: copyright + P.IVA a sinistra, firma Noifla a destra (centrati su mobile) -->
+    <div class="footer-bottom">
+      <div class="legal">
+        <span>© <span id="year"></span> LUM di Jusufi Jusuf – P.IVA 02280920394</span>
+        <nav class="legal-links" aria-label="Informazioni legali">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="cookie-policy.html">Cookie Policy</a>
+        </nav>
+      </div>
+
+      <!-- Firma Noifla Digital Studio: sostituire href="#" con l'URL del portfolio -->
+      <a href="https://noifla01.github.io/noifla-digital-studio/" target="_blank" rel="noopener noreferrer" class="credit-link"
+         aria-label="Created by Noifla Digital Studio (si apre in una nuova scheda)">
+        <svg class="credit-icon" viewBox="0 0 64 64" width="20" height="20" aria-hidden="true" focusable="false">
+          <rect x="2" y="2" width="60" height="60" rx="16" fill="none" stroke="currentColor" stroke-width="3" opacity=".45"/>
+          <g fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 44V20" stroke="currentColor"/>
+            <path d="M38 44V20" stroke="currentColor"/>
+            <path d="M18 20L38 44" class="credit-accent"/>
+          </g>
+          <rect x="44" y="39" width="6" height="6" rx="1" class="credit-accent-fill"/>
+        </svg>
+        <span>Created by <strong>Noifla Digital Studio</strong></span>
+      </a>
+    </div>
+    <p class="footer-note">* Valore indicativo: il risparmio reale dipende dall'edificio e dall'intervento.</p>
+  </div>
 </footer>
 
 <!-- Pulsante "Chiama" fisso, visibile solo su smartphone/tablet -->
