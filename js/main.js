@@ -100,3 +100,33 @@ Messaggio:
   /* ---------- 6. Anno nel footer ---------- */
   document.getElementById('year').textContent = new Date().getFullYear();
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const cookieBanner = document.getElementById("cookie-banner");
+  const acceptBtn = document.getElementById("accept-cookies");
+  const privacyModal = document.getElementById("privacy-modal");
+  const openPrivacyBtn = document.getElementById("open-privacy-modal");
+  const closePrivacyBtn = document.getElementById("close-privacy-modal");
+
+  // Mostra il banner solo se l'utente non ha già accettato
+  if (!localStorage.getItem("cookiesAccepted")) {
+    cookieBanner.style.display = "block";
+  }
+
+  // Salvataggio del consenso al click
+  acceptBtn.addEventListener("click", function () {
+    localStorage.setItem("cookiesAccepted", "true");
+    cookieBanner.style.display = "none";
+  });
+
+  // Apri Modale Privacy
+  openPrivacyBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    privacyModal.style.display = "flex";
+  });
+
+  // Chiudi Modale Privacy
+  closePrivacyBtn.addEventListener("click", function () {
+    privacyModal.style.display = "none";
+  });
+});
