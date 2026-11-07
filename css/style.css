@@ -1,0 +1,388 @@
+/* =====================================================================
+LUM COSTRUZIONI – Stili personalizzati
+Base: Bootstrap 5.3. Qui solo colori del brand e componenti custom.
+===================================================================== */
+
+/* ---------- 1. Variabili (palette dal logo) ---------- */
+:root {
+  --brand: #1e7b3c;          /* verde scuro del logo  */
+  --brand-dark: #155a2b;
+  --brand-light: #6cbf45;    /* verde chiaro delle "righe" del logo */
+  --brand-soft: #eaf4ec;
+  --dark: #1c2023;           /* grigio antracite */
+  --dark-2: #262b2f;
+  --text: #3a4046;
+  --bg-soft: #f5f7f6;
+  --radius: 1rem;
+  --nav-h: 76px;
+  
+  --bs-body-font-family: "Open Sans", system-ui, sans-serif;
+  --bs-body-color: var(--text);
+  --bs-link-color-rgb: 30, 123, 60;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
+body { overflow-x: hidden; }
+
+h1, h2, h3, h4, h5, .brand-text, .btn {
+  font-family: "Montserrat", sans-serif;
+}
+h1, h2, h3, h4, h5 { color: var(--dark); font-weight: 700; }
+
+.skip-link {
+  position: absolute; top: .5rem; left: .5rem; z-index: 2000;
+  background: #fff; padding: .5rem 1rem; border-radius: .5rem;
+}
+
+/* ---------- 2. Utility & bottoni ---------- */
+.text-brand-light { color: var(--brand-light); }
+.link-brand { color: var(--brand); font-weight: 600; text-decoration: none; }
+.link-brand:hover { color: var(--brand-dark); text-decoration: underline; }
+.bg-soft { background: var(--bg-soft); }
+
+.btn { font-weight: 600; border-radius: .6rem; letter-spacing: .01em; }
+.btn-lg { padding: .85rem 1.6rem; font-size: 1rem; }
+
+.btn-brand {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--brand);
+  --bs-btn-border-color: var(--brand);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--brand-dark);
+  --bs-btn-hover-border-color: var(--brand-dark);
+  --bs-btn-active-bg: var(--brand-dark);
+  --bs-btn-focus-shadow-rgb: 30, 123, 60;
+}
+.btn-outline-brand {
+  --bs-btn-color: var(--brand);
+  --bs-btn-border-color: var(--brand);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--brand);
+  --bs-btn-hover-border-color: var(--brand);
+  --bs-btn-active-bg: var(--brand-dark);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: "Montserrat", sans-serif;
+  font-size: .8rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .14em;
+  color: var(--brand);
+  margin-bottom: .75rem;
+  padding-left: 2.2rem; position: relative;
+}
+.eyebrow::before {
+  content: ""; position: absolute; left: 0; top: 50%;
+  width: 1.6rem; height: 3px; background: var(--brand-light);
+  transform: translateY(-50%);
+}
+.eyebrow-light { color: var(--brand-light); }
+
+.section { padding: 6rem 0; }
+.section-title { font-size: clamp(1.8rem, 3.5vw, 2.6rem); margin-bottom: 1.25rem; }
+.section-dark { background: var(--dark); }
+
+/* ---------- 3. Navbar ---------- */
+.navbar {
+  min-height: var(--nav-h);
+  background: rgba(255, 255, 255, .97);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, .06);
+  transition: box-shadow .3s;
+}
+.navbar.scrolled { box-shadow: 0 6px 24px rgba(0, 0, 0, .08); }
+
+.brand-text {
+  font-weight: 800; font-size: 1.15rem; letter-spacing: .02em;
+  color: var(--dark); line-height: 1;
+}
+.brand-text span { color: var(--brand); }
+.footer .brand-text span { color: var(--brand-light); }
+
+.navbar .nav-link {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600; font-size: .92rem;
+  color: var(--dark); padding: .5rem 1rem !important;
+  position: relative;
+}
+.navbar .nav-link::after {
+  content: ""; position: absolute; left: 1rem; right: 1rem; bottom: .2rem;
+  height: 2px; background: var(--brand-light);
+  transform: scaleX(0); transition: transform .25s;
+}
+.navbar .nav-link:hover::after,
+.navbar .nav-link.active::after { transform: scaleX(1); }
+.navbar .nav-link.active { color: var(--brand); }
+
+.navbar-toggler { border: 0; font-size: 1.9rem; color: var(--dark); padding: 0; }
+.navbar-toggler:focus { box-shadow: 0 0 0 3px rgba(108, 191, 69, .4); }
+
+@media (max-width: 991.98px) {
+  .navbar-collapse { padding: 1rem 0 1.25rem; }
+  .navbar .nav-link::after { display: none; }
+}
+
+/* ---------- 4. Hero ---------- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: calc(var(--nav-h) + 4rem) 0 5rem;
+  background:
+  linear-gradient(105deg, rgba(20, 24, 27, .93) 0%, rgba(20, 24, 27, .78) 50%, rgba(21, 90, 43, .55) 100%),
+  url("../img/progetto2-dopo.jpg") center / cover no-repeat;
+}
+.hero-title {
+  color: #fff;
+  font-size: clamp(2.3rem, 5.5vw, 4rem);
+  font-weight: 800; line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+.hero-lead { font-size: 1.15rem; max-width: 600px; opacity: .9; margin-bottom: 2rem; }
+.hero-points li { font-weight: 500; opacity: .95; }
+.hero-points i { color: var(--brand-light); margin-right: .4rem; }
+
+.hero-card {
+  background: #fff; border-radius: 1.25rem;
+  padding: 2.25rem; text-align: center;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, .35);
+  border-top: 6px solid var(--brand-light);
+}
+.hero-phone {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-family: "Montserrat", sans-serif; font-weight: 800;
+  font-size: 1.7rem; color: var(--brand); text-decoration: none;
+}
+.hero-phone:hover { color: var(--brand-dark); }
+
+/* ---------- 5. Punti di forza ---------- */
+.strengths { background: var(--brand); color: #fff; padding: 2.5rem 0; }
+.strengths i { font-size: 2rem; color: var(--brand-light); display: block; margin-bottom: .5rem; filter: brightness(1.25); }
+.strengths p { margin: 0; font-weight: 600; font-size: .95rem; }
+
+/* ---------- 6. Chi siamo ---------- */
+.about-img { position: relative; padding: 0 1.5rem 1.5rem 0; }
+.about-img::before {
+  content: ""; position: absolute; right: 0; bottom: 0;
+  width: 70%; height: 70%; border-radius: var(--radius);
+  background: var(--brand-soft); z-index: -1;
+}
+.about-badge {
+  position: absolute; left: -.5rem; bottom: 0;
+  display: flex; align-items: center; gap: .75rem;
+  background: var(--dark); color: #fff;
+  padding: 1rem 1.25rem; border-radius: var(--radius);
+  font-family: "Montserrat", sans-serif; font-weight: 700; line-height: 1.2;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .25);
+}
+.about-badge i { font-size: 2rem; color: var(--brand-light); }
+
+.mini-feature {
+  display: flex; align-items: center; gap: .6rem;
+  background: var(--bg-soft); border-radius: .75rem;
+  padding: .85rem 1rem; font-weight: 600; color: var(--dark);
+}
+.mini-feature i { color: var(--brand); font-size: 1.2rem; }
+
+/* ---------- 7. Servizi ---------- */
+.service-card {
+  background: #fff; border-radius: var(--radius);
+  padding: 2.25rem 2rem;
+  border: 1px solid rgba(0, 0, 0, .06);
+  transition: transform .3s, box-shadow .3s;
+  position: relative; overflow: hidden;
+}
+.service-card::after {
+  content: ""; position: absolute; left: 0; top: 0; height: 4px; width: 100%;
+  background: linear-gradient(90deg, var(--brand), var(--brand-light));
+  transform: scaleX(0); transform-origin: left; transition: transform .35s;
+}
+.service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0, 0, 0, .08); }
+.service-card:hover::after { transform: scaleX(1); }
+.service-card h3 { font-size: 1.25rem; margin-bottom: .75rem; }
+.service-card p { color: #5f666c; }
+
+.service-icon {
+  width: 64px; height: 64px; border-radius: 1rem;
+  display: grid; place-items: center;
+  background: var(--brand-soft); color: var(--brand);
+  font-size: 1.8rem; margin-bottom: 1.25rem;
+}
+.service-list { list-style: none; padding: 0; margin: 0; }
+.service-list li { padding: .35rem 0 .35rem 1.6rem; position: relative; font-size: .95rem; }
+.service-list li::before {
+  content: ""; position: absolute; left: .2rem; top: .75rem;
+  width: .55rem; height: .3rem;
+  border-left: 2px solid var(--brand-light); border-bottom: 2px solid var(--brand-light);
+  transform: rotate(-45deg);
+}
+
+/* Processo a step */
+.step { text-align: center; padding: 0 .5rem; }
+.step span {
+  display: inline-grid; place-items: center;
+  width: 54px; height: 54px; border-radius: 50%;
+  background: var(--dark); color: #fff;
+  font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 1.2rem;
+  margin-bottom: .9rem; border: 4px solid var(--brand-light);
+}
+.step h4 { font-size: 1.05rem; margin-bottom: .35rem; }
+.step p { font-size: .9rem; color: #6a7076; margin: 0; }
+
+/* ---------- 8. Slider Prima & Dopo ---------- */
+.project { margin: 0; background: var(--dark-2); border-radius: var(--radius); overflow: hidden; height: 100%; }
+.project figcaption { padding: 1.5rem 1.75rem 1.75rem; color: rgba(255, 255, 255, .75); }
+.project figcaption h3 { color: #fff; font-size: 1.2rem; margin-bottom: .5rem; }
+.tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+.tags span {
+  font-size: .78rem; font-weight: 600;
+  padding: .3rem .75rem; border-radius: 50rem;
+  background: rgba(108, 191, 69, .15); color: var(--brand-light);
+}
+
+.ba-slider {
+  --pos: 50%;
+  position: relative;
+  aspect-ratio: 1400 / 782;
+  overflow: hidden;
+  user-select: none;
+  touch-action: pan-y;   /* scroll verticale libero su mobile */
+  background: #111;
+}
+.ba-slider img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  pointer-events: none;
+}
+/* L'immagine "Prima" viene tagliata a destra della posizione del cursore */
+.ba-before { clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
+
+/* Linea verticale + maniglia */
+.ba-handle {
+  position: absolute; top: 0; bottom: 0; left: var(--pos);
+  width: 3px; background: #fff; transform: translateX(-50%);
+  pointer-events: none;
+  box-shadow: 0 0 12px rgba(0, 0, 0, .4);
+}
+.ba-handle i {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%) rotate(90deg);
+  width: 46px; height: 46px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--brand); color: #fff; font-size: 1.3rem;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .35);
+}
+
+/* L'input range invisibile copre tutta l'immagine: gestisce mouse, touch e tastiera */
+.ba-range {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  margin: 0; opacity: 0; cursor: ew-resize;
+  -webkit-appearance: none; appearance: none;
+}
+.ba-slider:has(.ba-range:focus-visible) .ba-handle i {
+  outline: 3px solid var(--brand-light); outline-offset: 2px;
+}
+
+.ba-label {
+  position: absolute; top: 1rem; z-index: 2;
+  font-family: "Montserrat", sans-serif;
+  font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  padding: .35rem .8rem; border-radius: .4rem;
+  pointer-events: none;
+}
+.ba-label-before { left: 1rem; background: rgba(28, 32, 35, .85); color: #fff; }
+.ba-label-after  { right: 1rem; background: var(--brand); color: #fff; }
+
+/* ---------- 9. Contatti ---------- */
+.contact-item {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1rem 1.1rem; margin-bottom: .85rem;
+  border: 1px solid rgba(0, 0, 0, .08); border-radius: var(--radius);
+  text-decoration: none; color: var(--dark);
+  transition: border-color .2s, background .2s, transform .2s;
+}
+.contact-item:hover { border-color: var(--brand-light); background: var(--brand-soft); transform: translateX(4px); }
+.contact-item small { display: block; color: #7a8086; font-size: .8rem; }
+.contact-item strong { font-family: "Montserrat", sans-serif; font-size: 1.05rem; word-break: break-word; }
+.contact-icon {
+  flex-shrink: 0; width: 50px; height: 50px; border-radius: .8rem;
+  display: grid; place-items: center;
+  background: var(--brand); color: #fff; font-size: 1.25rem;
+}
+
+.contact-form {
+  background: var(--bg-soft); border-radius: 1.25rem;
+  padding: 2rem; border-top: 5px solid var(--brand);
+}
+.contact-form .form-label { font-weight: 600; font-size: .9rem; color: var(--dark); }
+.contact-form .form-control,
+.contact-form .form-select { padding: .75rem 1rem; border-radius: .6rem; border-color: #d8dcdf; }
+.contact-form .form-control:focus,
+.contact-form .form-select:focus,
+.form-check-input:focus { border-color: var(--brand-light); box-shadow: 0 0 0 .2rem rgba(108, 191, 69, .25); }
+.form-check-input:checked { background-color: var(--brand); border-color: var(--brand); }
+
+.form-status:empty { display: none; }
+.form-status {
+  padding: .9rem 1rem; border-radius: .6rem;
+  background: var(--brand-soft); color: var(--brand-dark); font-weight: 600;
+}
+
+@media (min-width: 768px) { .contact-form { padding: 2.5rem; } }
+
+/* ---------- 10. Footer ---------- */
+.footer { background: var(--dark); color: #fff; padding: 4rem 0 2rem; }
+.footer h5 { color: #fff; font-size: 1rem; margin-bottom: 1rem; }
+.footer hr { border-color: rgba(255, 255, 255, .15); margin: 2.5rem 0 1.5rem; opacity: 1; }
+.footer-links li { margin-bottom: .55rem; }
+.footer-links a { color: rgba(255, 255, 255, .7); text-decoration: none; word-break: break-word; }
+.footer-links a:hover { color: var(--brand-light); }
+
+/* ---------- 11. Pulsanti flottanti ---------- */
+.call-fab {
+  position: fixed; right: 1.1rem; bottom: 1.1rem; z-index: 1030;
+  width: 60px; height: 60px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--brand); color: #fff; font-size: 1.5rem;
+  box-shadow: 0 10px 25px rgba(30, 123, 60, .45);
+  animation: pulse 2.2s infinite;
+}
+.call-fab:hover { color: #fff; background: var(--brand-dark); }
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(108, 191, 69, .6); }
+  70%  { box-shadow: 0 0 0 16px rgba(108, 191, 69, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(108, 191, 69, 0); }
+}
+
+.to-top {
+  position: fixed; right: 1.1rem; bottom: 1.1rem; z-index: 1029;
+  width: 46px; height: 46px; border-radius: 50%; border: 0;
+  background: var(--dark); color: #fff;
+  opacity: 0; visibility: hidden; transform: translateY(10px);
+  transition: all .3s;
+}
+.to-top.show { opacity: 1; visibility: visible; transform: none; }
+.to-top:hover { background: var(--brand); }
+/* Su mobile il "torna su" si sposta sopra il pulsante Chiama */
+@media (max-width: 991.98px) { .to-top { bottom: 5.4rem; right: 1.6rem; } }
+
+/* ---------- 12. Animazioni di comparsa ---------- */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .call-fab { animation: none; }
+}
+
+/* ---------- 13. Responsive vari ---------- */
+@media (max-width: 767.98px) {
+  .section { padding: 4.5rem 0; }
+  .hero { min-height: auto; padding-top: calc(var(--nav-h) + 3rem); }
+  .hero-lead { font-size: 1.05rem; }
+  .hero .btn-lg { width: 100%; }
+  .hero-points { gap: .75rem !important; flex-direction: column; }
+  .about-badge { padding: .75rem 1rem; font-size: .85rem; }
+  .ba-handle i { width: 40px; height: 40px; }
+}
