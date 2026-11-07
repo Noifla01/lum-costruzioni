@@ -1,0 +1,11 @@
+# File di sistema e anteprime OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# File di configurazione degli editor
+.vscode/
+.idea/
+
+# File di ambiente ed eventuali chiavi
+.env
