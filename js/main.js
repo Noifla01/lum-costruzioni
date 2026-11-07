@@ -31,16 +31,86 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
-  /* ---------- 2. Slider Prima & Dopo ----------
-  L'input range (invisibile) aggiorna la variabile CSS --pos,
-  che ritaglia l'immagine "Prima" e sposta la maniglia.
-  Funziona con mouse, dito e frecce della tastiera. */
-  document.querySelectorAll('.ba-slider').forEach(slider => {
+    /* ---------- 2. Slider Prima & Dopo ----------
+     La variabile CSS --pos (0-100%) indica quanta parte della foto
+     "Prima" è visibile, partendo da sinistra.
+     - Mouse / dito: si trascina in qualsiasi punto della foto
+     - Tastiera: frecce sull'input range nascosto
+     - Pulsanti: Prima (100%), Confronta (50%), Dopo (0%) */
+  document.querySelectorAll('.project').forEach(project => {
+    const slider = project.querySelector('.ba-slider');
     const range = slider.querySelector('.ba-range');
-    const update = () => slider.style.setProperty('--pos', range.value + '%');
-    range.addEventListener('input', update);
-    update();
+    const buttons = project.querySelectorAll('.ba-controls button');
+
+    const setPos = (value, animate = false) => {
+      const pos = Math.min(100, Math.max(0, value));
+      slider.classList.toggle('animate', animate);
+      slider.style.setProperty('--pos', pos + '%');
+      slider.classList.toggle('hide-before', pos < 8);
+      slider.classList.toggle('hide-after', pos > 92);
+      range.value = pos;
+      buttons.forEach(b => b.classList.toggle('active', Number(b.dataset.pos) === Math.round(pos)));
+    };
+
+    // Posizione in % a partire dalla coordinata X del puntatore
+    const posFromEvent = e => {
+      const rect = slider.getBoundingClientRect();
+      return ((e.clientX - rect.left) / rect.width) * 100;
+    };
+
+    let dragging = false;
+    let startX = 0, startY = 0, decided = false;
+
+    slider.addEventListener('pointerdown', e => {
+      dragging = true; decided = e.pointerType === 'mouse';
+      startX = e.clientX; startY = e.clientY;
+      if (decided) { slider.setPointerCapture(e.pointerId); setPos(posFromEvent(e)); }
+    });
+
+    slider.addEventListener('pointermove', e => {
+      if (!dragging) return;
+      // Su touch: decide se l'utente vuole trascinare lo slider (orizzontale)
+      // o scorrere la pagina (verticale)
+      if (!decided) {
+        const dx = Math.abs(e.clientX - startX), dy = Math.abs(e.clientY - startY);
+        if (dx < 6 && dy < 6) return;
+        if (dy > dx) { dragging = false; return; }
+        decided = true;
+        slider.setPointerCapture(e.pointerId);
+      }
+      setPos(posFromEvent(e));
+    });
+
+    const stop = e => {
+      // Tocco veloce senza trascinare: sposta la linea dove si è toccato
+      if (dragging && !decided && e.type === 'pointerup') setPos(posFromEvent(e), true);
+      dragging = false;
+    };
+    slider.addEventListener('pointerup', stop);
+    slider.addEventListener('pointercancel', stop);
+
+    range.addEventListener('input', () => setPos(Number(range.value)));
+    buttons.forEach(b => b.addEventListener('click', () => setPos(Number(b.dataset.pos), true)));
+
+    setPos(50);
   });
+
+  // Piccola animazione "dimostrativa" la prima volta che la sezione è visibile,
+  // per far capire subito che la foto si può far scorrere
+  const lavori = document.getElementById('lavori');
+  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const demo = new IntersectionObserver((entries, obs) => {
+      if (!entries[0].isIntersecting) return;
+      obs.disconnect();
+      document.querySelectorAll('.project').forEach((project, i) => {
+        const btns = project.querySelectorAll('.ba-controls button');
+        setTimeout(() => btns[0].click(), 600 + i * 250);   // mostra il Prima
+        setTimeout(() => btns[2].click(), 1600 + i * 250);  // poi il Dopo
+        setTimeout(() => btns[1].click(), 2600 + i * 250);  // torna al confronto
+      });
+    }, { threshold: 0.4 });
+    demo.observe(lavori);
+  }
   
   /* ---------- 3. Animazioni di comparsa ---------- */
   const reveals = document.querySelectorAll('.reveal');

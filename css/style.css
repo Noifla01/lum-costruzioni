@@ -161,6 +161,20 @@ h1, h2, h3, h4, h5 { color: var(--dark); font-weight: 700; }
 }
 .hero-phone:hover { color: #fff !important; }
 
+/* Card bianca nella sezione principale (solo desktop) */
+.hero-card {
+  background: #fff;
+  border-radius: 1.25rem;
+  padding: 2.25rem;
+  text-align: center;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, .35);
+  border-top: 6px solid var(--brand-light);
+}
+
+/* Dentro la card bianca il telefono torna verde scuro, leggibile */
+.hero-card .hero-phone { color: var(--brand) !important; font-size: 1.7rem; }
+.hero-card .hero-phone:hover { color: var(--brand-dark) !important; }
+
 /* ---------- 5. Punti di forza ---------- */
 .strengths { background: var(--brand); color: #fff; padding: 2.5rem 0; }
 .strengths i { font-size: 2rem; color: var(--brand-light); display: block; margin-bottom: .5rem; filter: brightness(1.25); }
