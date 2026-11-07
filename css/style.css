@@ -357,6 +357,10 @@ h1, h2, h3, h4, h5 { color: var(--dark); font-weight: 700; }
   background: var(--brand-soft); color: var(--brand-dark); font-weight: 600;
 }
 
+/* Dati aziendali nel footer */
+.company-data { font-style: normal; font-size: .9rem; line-height: 1.8; color: rgba(255, 255, 255, .6); }
+.company-data strong { color: #fff; font-weight: 600; }
+
 @media (min-width: 768px) { .contact-form { padding: 2.5rem; } }
 
 /* ---------- 10. Footer ---------- */
